@@ -1,0 +1,268 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Préstamos Profesionales — Inicio</title>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --accent1:#007bff;
+    --accent2:#6610f2;
+    --accent3:#17a2b8;
+    --light:#f4f7fb;
+    --dark:#1b1e29;
+    --radius:14px;
+    --banner-bg: rgba(0,0,0,0.25);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'Poppins',sans-serif;background:linear-gradient(135deg,var(--accent1),var(--accent2));color:#fff;line-height:1.6;min-height:100vh}
+  header{background:var(--banner-bg);backdrop-filter:blur(6px);padding:12px 18px;position:sticky;top:0;z-index:50;border-bottom:1px solid rgba(255,255,255,0.04)}
+  .container{max-width:1100px;margin:0 auto;padding:18px}
+  .topbar{display:flex;justify-content:space-between;align-items:center;gap:12px}
+  .logo{display:flex;align-items:center;gap:10px}
+  .logo-icon{width:50px;height:50px;border-radius:50%;background:linear-gradient(135deg,#fff,var(--accent3));display:flex;align-items:center;justify-content:center;color:var(--accent2);font-weight:700;font-size:18px}
+  nav a{color:#fff;text-decoration:none;margin-left:18px;font-weight:600;opacity:0.95}
+  nav a:hover{opacity:0.8}
+
+  /* BANNIÈRE DE TARIF (très visible) */
+  .fee-banner{
+    background: linear-gradient(90deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02));
+    border: 1px solid rgba(255,255,255,0.06);
+    padding:10px 14px;
+    border-radius: 10px;
+    display:inline-block;
+    font-weight:700;
+    color:#fff;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.25);
+  }
+
+  /* HERO */
+  .hero{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;padding:48px 0;gap:20px}
+  .hero-text{flex:1 1 480px}
+  .hero-text h1{font-size:40px;line-height:1.2;margin-bottom:12px}
+  .hero-text p{font-size:18px;opacity:0.95;margin-bottom:18px}
+  .actions-hero{display:flex;gap:14px;align-items:center}
+  .btn{background:#fff;color:var(--accent2);padding:12px 18px;border-radius:12px;font-weight:700;text-decoration:none;display:inline-block}
+  .btn.secondary{background:transparent;color:#fff;border:2px solid rgba(255,255,255,0.12)}
+  .hero-img{flex:1 1 420px;text-align:center}
+  .hero-img img{width:90%;max-width:420px;border-radius:12px;box-shadow:0 10px 40px rgba(0,0,0,0.3)}
+
+  /* SECTIONS */
+  section{padding:48px 0}
+  .features{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  .feature{background:rgba(255,255,255,0.12);border-radius:12px;padding:20px;box-shadow:0 6px 18px rgba(0,0,0,0.2)}
+  .feature h3{font-size:18px;margin-bottom:8px}
+  .feature p{font-size:15px;opacity:0.95}
+
+  /* AVIS / PREUVE SOCIALE (exemple — utiliser solo si real) */
+  .trust-row{display:flex;gap:12px;align-items:center;flex-wrap:wrap;margin-top:12px}
+  .trust-badge{background:rgba(255,255,255,0.06);padding:8px 10px;border-radius:10px;font-weight:600;font-size:14px}
+
+  footer{text-align:center;background:rgba(0,0,0,0.22);padding:18px;font-size:14px;border-radius:8px;margin-top:28px}
+
+  /* MODAL / ACCEPTANCE FEE */
+  .modal-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.6);display:none;align-items:center;justify-content:center;z-index:200}
+  .modal{background:#0f1720;padding:22px;border-radius:12px;max-width:560px;width:94%;box-shadow:0 20px 60px rgba(0,0,0,0.6);border:1px solid rgba(255,255,255,0.04)}
+  .modal h3{margin-bottom:8px}
+  .modal p{opacity:0.95;margin-bottom:14px}
+  .modal .row{display:flex;gap:10px;align-items:center;margin-bottom:12px}
+  .modal .notice{background:rgba(255,255,255,0.05);padding:10px;border-radius:8px;font-weight:700}
+  .modal .controls{display:flex;gap:10px;justify-content:flex-end;margin-top:12px}
+
+  /* small */
+  .small{font-size:13px;opacity:0.85}
+
+  @media (max-width:780px){
+    .hero{flex-direction:column;text-align:center}
+    .hero-text{margin-bottom:10px}
+    nav{display:none}
+  }
+</style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="container topbar">
+      <div class="logo">
+        <div class="logo-icon">PR</div>
+        <div>
+          <strong>Préstamos Profesionales</strong><br>
+          <small class="small" style="opacity:0.8">Tu dinero, fácil y rápido</small>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <!-- BANNIÈRE COURTE -->
+        <div class="fee-banner" aria-live="polite" title="Tarifa de tramitación">
+          Tarifa de tramitación: <span style="color:#ffecb3">500 €</span>
+        </div>
+
+        <nav>
+          <a href="#inicio">Inicio</a>
+          <a href="#como">Cómo funciona</a>
+          <!-- Bouton qui ouvre modal d'acceptation avant d'aller sur demande.html -->
+          <a href="#" id="openApply" class="btn secondary">Haz un préstamo</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- MAIN -->
+  <main class="container">
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+      <div class="hero-text">
+        <h1>Obtén tu préstamo personal en minutos</h1>
+        <p>Procesos 100% en línea, con total seguridad. <strong>Antes de iniciar la tramitación, es necesaria la tarifa de 500 € (tarifa de gestión).</strong></p>
+
+        <div class="actions-hero">
+          <a href="#" id="openApplyHero" class="btn">Solicitar préstamo (500 €)</a>
+          <a href="#como" class="btn secondary">Cómo funciona</a>
+        </div>
+
+        <!-- preuve sociale simple (n'utilise que des vraies données) -->
+        <div class="trust-row" style="margin-top:16px">
+          <div class="trust-badge">✔ Aprobación rápida</div>
+          <div class="trust-badge">✔ Pago seguro</div>
+          <div class="trust-badge">✔ Asistencia 24/7</div>
+        </div>
+      </div>
+
+      <div class="hero-img">
+        <img src="Photos.jpg" alt="Imagen préstamo" />
+      </div>
+    </section>
+
+    <!-- COMO FUNCIONA -->
+    <section id="como">
+      <h2 style="text-align:center;font-size:28px;margin-bottom:24px">Cómo funciona</h2>
+      <div class="features">
+        <div class="feature">
+          <h3>1. Completa el formulario</h3>
+          <p>Proporciona tus datos personales y el monto que necesitas.</p>
+        </div>
+        <div class="feature">
+          <h3>2. Paga la tarifa de tramitación (500 €)</h3>
+          <p>El pago de 500 € es obligatorio para iniciar la evaluación de la solicitud. El trámite no comenzará sin este abono.</p>
+        </div>
+        <div class="feature">
+          <h3>3. Evaluación rápida</h3>
+          <p>Analizamos tu solicitud en menos de 48 horas hábiles tras recibir el pago.</p>
+        </div>
+        <div class="feature">
+          <h3>4. Recibe tu dinero</h3>
+          <p>Si tu solicitud es aprobada, el dinero se deposita en tu cuenta. Se informarán condiciones y comisiones adicionales si aplican.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- VENTAJAS -->
+    <section>
+      <h2 style="text-align:center;font-size:28px;margin-bottom:24px">Ventajas de trabajar con nosotros</h2>
+      <div class="features">
+        <div class="feature" style="background:rgba(255,255,255,0.2);">
+          <h3>💳 Flexibilidad total</h3>
+          <p>Elige el monto y el plazo que mejor se adapte a ti.</p>
+        </div>
+        <div class="feature" style="background:rgba(23,162,184,0.18);">
+          <h3>⚡ Aprobación rápida</h3>
+          <p>Procesamos tu solicitud en tiempo récord.</p>
+        </div>
+        <div class="feature" style="background:rgba(102,16,242,0.18);">
+          <h3>🔒 Seguridad garantizada</h3>
+          <p>Tus datos personales están protegidos con encriptación avanzada.</p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div style="margin-bottom:8px">© <span id="year"></span> Préstamos Profesionales — Todos los derechos reservados.</div>
+      <div class="small" style="opacity:0.85">
+        <strong>Nota legal:</strong> La tarifa de tramitación es de 500 €. Asegúrate de recibir factura y comprobante. Si tienes dudas sobre la política de reembolso o condiciones, contacta con nuestro servicio de atención.
+      </div>
+    </footer>
+  </main>
+
+  <!-- MODAL DE ACEPTACIÓN -->
+  <div id="modalBackdrop" class="modal-backdrop" role="dialog" aria-modal="true" aria-hidden="true">
+    <div class="modal" role="document" aria-labelledby="modalTitle">
+      <h3 id="modalTitle">Confirmación de tarifa — 500 €</h3>
+      <p><strong>Antes de continuar:</strong> Para iniciar la tramitación de cualquier solicitud de préstamo, es necesario abonar la <strong>tarifa de tramitación de 500 €</strong>. Este pago se utiliza para cubrir los costes administrativos y la evaluación de la solicitud.</p>
+
+      <div class="notice small" style="margin-bottom:10px">
+        TARIFA OBLIGATORIA: <strong>500 €</strong> — No se iniciará la evaluación sin el pago.
+      </div>
+
+      <div class="row">
+        <label style="display:flex;gap:8px;align-items:center">
+          <input id="acceptFee" type="checkbox" />
+          <span>Acepto y confirmo que pagaré la tarifa de 500 € para iniciar la tramitación.</span>
+        </label>
+      </div>
+
+      <div class="small" style="opacity:0.9">
+        <strong>Información importante:</strong> Asegúrate de que el pago se realiza a través de los canales oficiales indicados en la página de pago. Solicita siempre factura o justificante. Si tienes preguntas legales, consulta con un asesor.
+      </div>
+
+      <div class="controls" style="display:flex;justify-content:flex-end;margin-top:14px">
+        <button id="cancelModal" class="btn secondary" style="background:transparent;border:1px solid rgba(255,255,255,0.08)">Cancelar</button>
+        <button id="proceedModal" class="btn" style="background:#fff;color:var(--accent2)">Ir al pago / Solicitud</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // année
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // modal logic
+    const modalBackdrop = document.getElementById('modalBackdrop');
+    const openApply = document.getElementById('openApply');
+    const openApplyHero = document.getElementById('openApplyHero');
+    const cancelModal = document.getElementById('cancelModal');
+    const proceedModal = document.getElementById('proceedModal');
+    const acceptFee = document.getElementById('acceptFee');
+
+    function openModal(){
+      modalBackdrop.style.display = 'flex';
+      modalBackdrop.setAttribute('aria-hidden','false');
+      acceptFee.checked = false;
+      acceptFee.focus();
+    }
+    function closeModal(){
+      modalBackdrop.style.display = 'none';
+      modalBackdrop.setAttribute('aria-hidden','true');
+    }
+
+    openApply.addEventListener('click', function(e){ e.preventDefault(); openModal(); });
+    openApplyHero.addEventListener('click', function(e){ e.preventDefault(); openModal(); });
+    cancelModal.addEventListener('click', function(e){ e.preventDefault(); closeModal(); });
+
+    proceedModal.addEventListener('click', function(e){
+      e.preventDefault();
+      if(!acceptFee.checked){
+        alert('Debes aceptar la tarifa de 500 € antes de continuar.');
+        acceptFee.focus();
+        return;
+      }
+      // Redirige a la página de la solicitud o página de pago
+      // Aquí puedes redirigir a la página real donde el usuario paga (ej. /pago.html) o a demande.html si gestionas pago después.
+      // Ejemplo: location.href = 'pago.html';
+      // Para seguir con tu flujo actual (página de formulario): allons à demande.html
+      location.href = 'demande.html';
+    });
+
+    // Accessibilité : fermer modal en arrière-plan click
+    modalBackdrop.addEventListener('click', function(e){
+      if(e.target === modalBackdrop) closeModal();
+    });
+
+    // Prevent keyboard tab trapping minimal
+    document.addEventListener('keydown', function(e){
+      if(e.key === 'Escape' && modalBackdrop.style.display === 'flex') closeModal();
+    });
+  </script>
+</body>
+</html>
